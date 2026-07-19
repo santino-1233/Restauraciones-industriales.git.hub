@@ -39,7 +39,7 @@
 <nav class="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b-2 border-outline-variant">
 <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto h-20">
 <a class="flex items-center gap-3" href="index.html">
-<img alt="Restauraciones Industriales" class="h-14 w-14 md:h-16 md:w-16 flex-shrink-0 object-contain" src="logo.png"/>
+<img alt="Restauraciones Industriales" class="h-10 w-10 md:h-12 md:w-12 flex-shrink-0 object-contain" src="logo.png"/>
 <span class="font-headline-md text-lg md:text-headline-md font-bold text-on-surface uppercase tracking-tight leading-none">Restauraciones<br class="md:hidden"/><span class="md:inline"> Industriales</span></span>
 </a>
 <div class="hidden lg:flex items-center gap-8">
@@ -50,10 +50,10 @@
 <a class="text-on-surface font-label-caps text-label-caps hover:text-primary transition-colors" href="index.html#contacto">Contacto</a>
 </div>
 <div class="flex items-center gap-2 md:gap-3">
-<a class="bg-primary-container text-on-primary-container px-3 sm:px-4 md:px-6 py-2.5 md:py-3 font-label-caps text-xs md:text-label-caps font-bold btn-industrial hover:brightness-110 flex items-center gap-2" href="https://wa.me/5491125547252">
-<span class="material-symbols-outlined text-[18px]">send</span> <span class="hidden sm:inline">PRESUPUESTO</span>
+<a class="bg-primary-container text-on-primary-container px-4 md:px-6 py-2.5 md:py-3 font-label-caps text-xs md:text-label-caps font-bold btn-industrial hover:brightness-110 flex items-center gap-2" href="https://wa.me/5491125547252">
+<span class="material-symbols-outlined text-[18px]">send</span> <span class="hidden sm:inline">PRESUPUESTO</span><span class="sm:hidden">COTIZAR</span>
 </a>
-<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="lg:hidden w-9 h-9 sm:w-11 sm:h-11 flex-shrink-0 flex items-center justify-center border border-outline-variant text-on-surface" id="menu-toggle">
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="lg:hidden w-11 h-11 flex items-center justify-center border border-outline-variant text-on-surface" id="menu-toggle">
 <span class="material-symbols-outlined" id="menu-icon">menu</span>
 </button>
 </div>
@@ -77,12 +77,7 @@
 <section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto pb-20 md:pb-28 reveal">
 <div class="relative rigid-border bg-surface-container overflow-hidden">
 <div id="carousel-track">
-<div class="slide"><img alt="Obra 1" class="w-full h-[50vh] md:h-[70vh] object-cover" src="https://images.pexels.com/photos/4483773/pexels-photo-4483773.jpeg?auto=compress&cs=tinysrgb&w=1600"/></div>
-<div class="slide"><img alt="Obra 2" class="w-full h-[50vh] md:h-[70vh] object-cover" src="https://images.pexels.com/photos/36217325/pexels-photo-36217325.jpeg?auto=compress&cs=tinysrgb&w=1600"/></div>
-<div class="slide"><img alt="Obra 3" class="w-full h-[50vh] md:h-[70vh] object-cover" src="https://images.pexels.com/photos/14213937/pexels-photo-14213937.jpeg?auto=compress&cs=tinysrgb&w=1600"/></div>
-<div class="slide"><img alt="Obra 4" class="w-full h-[50vh] md:h-[70vh] object-cover" src="https://images.pexels.com/photos/9280001/pexels-photo-9280001.jpeg?auto=compress&cs=tinysrgb&w=1600"/></div>
-<div class="slide"><img alt="Obra 5" class="w-full h-[50vh] md:h-[70vh] object-cover" src="https://images.pexels.com/photos/29274527/pexels-photo-29274527.jpeg?auto=compress&cs=tinysrgb&w=1600"/></div>
-<div class="slide"><img alt="Obra 6" class="w-full h-[50vh] md:h-[70vh] object-cover" src="https://images.pexels.com/photos/4483609/pexels-photo-4483609.jpeg?auto=compress&cs=tinysrgb&w=1600"/></div>
+<div class="slide flex items-center justify-center h-[50vh] md:h-[70vh] text-on-surface-variant font-label-caps text-sm" id="carousel-loading">Cargando fotos…</div>
 </div>
 <button aria-label="Anterior" class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-11 h-11 md:w-14 md:h-14 bg-surface/80 border border-outline-variant hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors" id="prev-btn">
 <span class="material-symbols-outlined">chevron_left</span>
@@ -148,23 +143,63 @@
         }, { threshold: 0.15 });
         revealEls.forEach(el => revealObserver.observe(el));
 
+        // ======= CONFIGURÁ ACÁ TU REPO (mismos datos que en admin/config.yml) =======
+        const GH_USER = 'santino-1233';
+        const GH_REPO = 'Restauraciones-industriales';
+        const GH_BRANCH = 'main';   // ⚠️ confirmá en GitHub si es "main" o "master"
+        // ============================================================================
+
         // Carousel
         const track = document.getElementById('carousel-track');
-        const slides = track.children;
-        const total = slides.length;
         const dotsWrap = document.getElementById('dots');
         const counter = document.getElementById('slide-counter');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
         let index = 0;
+        let total = 0;
 
-        for (let i = 0; i < total; i++) {
-            const dot = document.createElement('button');
-            dot.className = 'w-2.5 h-2.5 rounded-full bg-outline-variant';
-            dot.setAttribute('aria-label', 'Ir a foto ' + (i + 1));
-            dot.addEventListener('click', () => goTo(i));
-            dotsWrap.appendChild(dot);
+        async function loadObras() {
+            try {
+                // cache-busting simple para que no se quede pegada una versión vieja
+                const bust = Math.floor(Date.now() / (5 * 60 * 1000)); // cambia cada 5 min
+                const url = `https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/data/obras.json?v=${bust}`;
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('No se pudo leer data/obras.json');
+                const data = await res.json();
+
+                const fotos = (data.fotos || []).filter(f => f.imagen);
+
+                if (fotos.length === 0) {
+                    track.innerHTML = '<div class="slide flex items-center justify-center h-[50vh] md:h-[70vh] text-on-surface-variant font-label-caps text-sm">Todavía no hay fotos cargadas.</div>';
+                    return;
+                }
+
+                track.innerHTML = fotos.map((f, i) =>
+                    `<div class="slide"><img alt="${(f.alt || 'Obra ' + (i + 1)).replace(/"/g, '&quot;')}" class="w-full h-[50vh] md:h-[70vh] object-cover" src="${f.imagen}"/></div>`
+                ).join('');
+
+                total = fotos.length;
+                buildDots();
+                render();
+            } catch (err) {
+                track.innerHTML = '<div class="slide flex items-center justify-center h-[50vh] md:h-[70vh] text-on-surface-variant font-label-caps text-sm">No se pudieron cargar las fotos. Probá recargar la página.</div>';
+                console.error(err);
+            }
+        }
+
+        function buildDots() {
+            dotsWrap.innerHTML = '';
+            for (let i = 0; i < total; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'w-2.5 h-2.5 rounded-full bg-outline-variant';
+                dot.setAttribute('aria-label', 'Ir a foto ' + (i + 1));
+                dot.addEventListener('click', () => goTo(i));
+                dotsWrap.appendChild(dot);
+            }
         }
 
         function render() {
+            if (total === 0) return;
             track.style.transform = `translateX(-${index * 100}%)`;
             counter.textContent = `${index + 1} / ${total}`;
             [...dotsWrap.children].forEach((d, i) => {
@@ -172,14 +207,19 @@
                 d.classList.toggle('bg-outline-variant', i !== index);
             });
         }
-        function goTo(i) { index = (i + total) % total; render(); }
+        function goTo(i) {
+            if (total === 0) return;
+            index = (i + total) % total;
+            render();
+        }
 
-        document.getElementById('prev-btn').addEventListener('click', () => goTo(index - 1));
-        document.getElementById('next-btn').addEventListener('click', () => goTo(index + 1));
+        prevBtn.addEventListener('click', () => goTo(index - 1));
+        nextBtn.addEventListener('click', () => goTo(index + 1));
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') goTo(index - 1);
             if (e.key === 'ArrowRight') goTo(index + 1);
         });
-        render();
+
+        loadObras();
     </script>
 </body></html>

@@ -128,8 +128,6 @@
         @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,140,0,0.45); } 50% { box-shadow: 0 0 0 16px rgba(255,140,0,0); } }
         .pulse-cta { animation: pulseGlow 2.4s ease-out infinite; }
         .pulse-cta:hover { animation-play-state: paused; }
-        .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body id="top" class="font-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
@@ -148,10 +146,10 @@
 <a class="text-on-surface font-label-caps text-label-caps hover:text-primary transition-colors" href="#contacto">Contacto</a>
 </div>
 <div class="flex items-center gap-2 md:gap-3">
-<a class="bg-primary-container text-on-primary-container px-3 sm:px-4 md:px-6 py-2.5 md:py-3 font-label-caps text-xs md:text-label-caps font-bold btn-industrial hover:brightness-110 flex items-center gap-2" href="https://wa.me/5491125547252">
-<span class="material-symbols-outlined text-[18px]">send</span> <span class="hidden sm:inline">PRESUPUESTO</span>
+<a class="bg-primary-container text-on-primary-container px-4 md:px-6 py-2.5 md:py-3 font-label-caps text-xs md:text-label-caps font-bold btn-industrial hover:brightness-110 flex items-center gap-2" href="https://wa.me/5491125547252">
+<span class="material-symbols-outlined text-[18px]">send</span> <span class="hidden sm:inline">PRESUPUESTO</span><span class="sm:hidden">COTIZAR</span>
 </a>
-<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="lg:hidden w-9 h-9 sm:w-11 sm:h-11 flex-shrink-0 flex items-center justify-center border border-outline-variant text-on-surface" id="menu-toggle">
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="lg:hidden w-11 h-11 flex items-center justify-center border border-outline-variant text-on-surface" id="menu-toggle">
 <span class="material-symbols-outlined" id="menu-icon">menu</span>
 </button>
 </div>
@@ -207,58 +205,75 @@
 <section class="bg-surface-container-lowest py-16 border-y border-outline-variant overflow-hidden">
 <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 <h3 class="text-center font-label-caps text-xs md:text-label-caps text-on-surface-variant mb-12 opacity-60 tracking-widest uppercase">EMPRESAS QUE CONFÍAN EN NOSOTROS</h3>
-<div class="relative max-w-4xl mx-auto px-12 md:px-16">
-<div class="overflow-x-auto snap-x snap-mandatory scrollbar-hide" id="logos-viewport">
-<div class="flex" id="logos-track">
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="Walmart" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="walmart.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">WALMART</span>
+<div class="relative max-w-3xl mx-auto">
+<div class="overflow-hidden">
+<div class="flex transition-transform duration-500 ease-in-out" id="logos-track">
+<div class="grid grid-cols-3 gap-6 md:gap-10 items-center justify-items-center opacity-70 flex-shrink-0 w-full">
+<div class="flex flex-col items-center gap-2">
+<img alt="Walmart" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="walmart.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">WALMART</span>
 </div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="Easy" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="easy.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">EASY</span>
+<div class="flex flex-col items-center gap-2">
+<img alt="Easy" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="easy.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">EASY</span>
 </div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="Cencosud" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="cencosud.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">CENCOSUD</span>
-</div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="Marolio" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="marolio.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">MAROLIO</span>
-</div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="Trenes Argentinos" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="trenes argentinos.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">TRENES ARGENTINOS</span>
-</div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="La Rural" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="larural.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">LA RURAL</span>
-</div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="Piero" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="piero.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">PIERO</span>
-</div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="BCM - Banco de Comercio de Mendoza" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="bcm.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">BCM</span>
-</div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="Universidad de Buenos Aires" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="UBA.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">UBA</span>
-</div>
-<div class="logo-item snap-start flex flex-col items-center gap-2 px-2" style="flex:0 0 50%">
-<img alt="Sheraton" class="h-10 sm:h-12 w-full max-w-[100px] sm:max-w-[112px] object-contain grayscale hover:grayscale-0 transition-all mx-auto" src="sheraton.png"/>
-<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest text-center">SHERATON</span>
+<div class="flex flex-col items-center gap-2">
+<img alt="Cencosud" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="cencosud.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">CENCOSUD</span>
 </div>
 </div>
+<div class="grid grid-cols-3 gap-6 md:gap-10 items-center justify-items-center opacity-70 flex-shrink-0 w-full">
+<div class="flex flex-col items-center gap-2">
+<img alt="Marolio" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="marolio.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">MAROLIO</span>
 </div>
-<button aria-label="Anteriores empresas" class="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 md:w-11 md:h-11 bg-surface-container-high border border-outline-variant hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors z-10" id="logos-prev">
+<div class="flex flex-col items-center gap-2">
+<img alt="Trenes Argentinos" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="trenes argentinos.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">TRENES ARGENTINOS</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<img alt="La Rural" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="larural.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">LA RURAL</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6 md:gap-10 items-center justify-items-center opacity-70 flex-shrink-0 w-full">
+<div class="flex flex-col items-center gap-2">
+<img alt="Piero" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="piero.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">PIERO</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<img alt="BCM - Banco de Comercio de Mendoza" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="bcm.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">BCM</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<img alt="Universidad de Buenos Aires" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="UBA.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">UBA</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6 md:gap-10 items-center justify-items-center opacity-70 flex-shrink-0 w-full" data-clone="true">
+<div class="flex flex-col items-center gap-2">
+<img alt="Walmart" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="walmart.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">WALMART</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<img alt="Easy" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="easy.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">EASY</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<img alt="Cencosud" class="h-12 w-28 object-contain grayscale hover:grayscale-0 transition-all" src="cencosud.png"/>
+<span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest">CENCOSUD</span>
+</div>
+</div>
+</div>
+</div>
+<button aria-label="Anteriores empresas" class="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-surface-container-high border border-outline-variant hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors" id="logos-prev">
 <span class="material-symbols-outlined text-lg">chevron_left</span>
 </button>
-<button aria-label="Siguientes empresas" class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 md:w-11 md:h-11 bg-surface-container-high border border-outline-variant hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors z-10" id="logos-next">
+<button aria-label="Siguientes empresas" class="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 w-10 h-10 bg-surface-container-high border border-outline-variant hover:bg-primary hover:text-on-primary flex items-center justify-center transition-colors" id="logos-next">
 <span class="material-symbols-outlined text-lg">chevron_right</span>
 </button>
 </div>
+<div class="flex justify-center gap-2 mt-8" id="logos-dots"></div>
 </div>
 </section>
 <!-- Value Prop Section -->
@@ -640,57 +655,60 @@ VER OBRAS REALIZADAS
 </svg>
 </a>
 <script>
-        // Logos carousel: 2 per view on mobile, 3 on desktop, seamless infinite loop
-        const logosViewport = document.getElementById('logos-viewport');
+        // Logos carousel (3 per slide, infinite loop)
         const logosTrack = document.getElementById('logos-track');
-        const originalLogoItems = [...logosTrack.children];
-        originalLogoItems.forEach(item => logosTrack.appendChild(item.cloneNode(true)));
-
-        const logosMQ = window.matchMedia('(min-width: 768px)');
-        function applyLogosLayout() {
-            const perView = logosMQ.matches ? 3 : 2;
-            [...logosTrack.children].forEach(item => {
-                item.style.flex = `0 0 ${100 / perView}%`;
-                item.style.maxWidth = `${100 / perView}%`;
+        const logosSlides = [...logosTrack.children];
+        const logosRealTotal = logosSlides.filter(s => !s.dataset.clone).length; // 3 real slides
+        const logosDots = document.getElementById('logos-dots');
+        let logosIndex = 0;
+        for (let i = 0; i < logosRealTotal; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'w-2 h-2 rounded-full bg-outline-variant';
+            dot.setAttribute('aria-label', 'Ir a página ' + (i + 1));
+            dot.addEventListener('click', () => logosGoTo(i));
+            logosDots.appendChild(dot);
+        }
+        function logosRender(withTransition = true) {
+            logosTrack.style.transition = withTransition ? 'transform 0.6s cubic-bezier(0.4,0,0.2,1)' : 'none';
+            logosTrack.style.transform = `translateX(-${logosIndex * 100}%)`;
+            [...logosDots.children].forEach((d, i) => {
+                const active = i === (logosIndex % logosRealTotal);
+                d.classList.toggle('bg-primary', active);
+                d.classList.toggle('bg-outline-variant', !active);
             });
         }
-        applyLogosLayout();
-
-        let logosHalfWidth = 0;
-        function measureLogos() { logosHalfWidth = logosTrack.scrollWidth / 2; }
-        measureLogos();
-        window.addEventListener('resize', () => {
-            applyLogosLayout();
-            logosViewport.scrollLeft = 0;
-            measureLogos();
-        });
-
-        function logosStep() {
-            const style = getComputedStyle(logosViewport);
-            const padLeft = parseFloat(style.paddingLeft) || 0;
-            const padRight = parseFloat(style.paddingRight) || 0;
-            return logosViewport.clientWidth - padLeft - padRight;
-        }
+        function logosGoTo(i) { logosIndex = i; logosRender(); }
         function logosNext() {
-            logosViewport.scrollBy({ left: logosStep(), behavior: 'smooth' });
+            logosIndex++;
+            logosRender();
+            if (logosIndex === logosRealTotal) {
+                // after the transition to the cloned slide finishes, snap back to the real first slide
+                setTimeout(() => {
+                    logosIndex = 0;
+                    logosRender(false);
+                }, 600);
+            }
         }
         function logosPrev() {
-            if (logosViewport.scrollLeft < logosStep()) {
-                logosViewport.scrollLeft += logosHalfWidth;
+            if (logosIndex === 0) {
+                logosIndex = logosRealTotal;
+                logosRender(false);
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    logosIndex = logosRealTotal - 1;
+                    logosRender();
+                }));
+            } else {
+                logosIndex--;
+                logosRender();
             }
-            logosViewport.scrollBy({ left: -logosStep(), behavior: 'smooth' });
         }
-        logosViewport.addEventListener('scroll', () => {
-            if (logosViewport.scrollLeft >= logosHalfWidth) {
-                logosViewport.scrollLeft -= logosHalfWidth;
-            }
-        });
         document.getElementById('logos-prev').addEventListener('click', logosPrev);
         document.getElementById('logos-next').addEventListener('click', logosNext);
         let logosAutoplay = setInterval(logosNext, 3200);
-        const logosSection = logosViewport.closest('section');
+        const logosSection = logosTrack.closest('section');
         logosSection.addEventListener('mouseenter', () => clearInterval(logosAutoplay));
         logosSection.addEventListener('mouseleave', () => { logosAutoplay = setInterval(logosNext, 3200); });
+        logosRender(false);
 
         // Mobile menu toggle
         const menuToggle = document.getElementById('menu-toggle');
