@@ -143,11 +143,12 @@
         }, { threshold: 0.15 });
         revealEls.forEach(el => revealObserver.observe(el));
 
-        // ======= CONFIGURÁ ACÁ TU REPO (mismos datos que en admin/config.yml) =======
+        // ======= CONFIGURÁ ACÁ TU REPO =======
         const GH_USER = 'santino-1233';
         const GH_REPO = 'Restauraciones-industriales';
-        const GH_BRANCH = 'main';   // ⚠️ confirmá en GitHub si es "main" o "master"
-        // ============================================================================
+        const GH_FOLDER = 'images/obras';   // carpeta del repo donde subís las fotos
+        const GH_BRANCH = 'main';           // ⚠️ confirmá en GitHub si es "main" o "master"
+        // ======================================
 
         // Carousel
         const track = document.getElementById('carousel-track');
@@ -160,22 +161,24 @@
 
         async function loadObras() {
             try {
-                // cache-busting simple para que no se quede pegada una versión vieja
-                const bust = Math.floor(Date.now() / (5 * 60 * 1000)); // cambia cada 5 min
-                const url = `https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/data/obras.json?v=${bust}`;
+                const url = `https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${GH_FOLDER}?ref=${GH_BRANCH}`;
                 const res = await fetch(url);
-                if (!res.ok) throw new Error('No se pudo leer data/obras.json');
-                const data = await res.json();
+                if (!res.ok) throw new Error('No se pudo leer la carpeta del repo');
+                const files = await res.json();
 
-                const fotos = (data.fotos || []).filter(f => f.imagen);
+                const IMG_EXT = /\.(jpe?g|png|webp|avif|gif)$/i;
+                const fotos = files
+                    .filter(f => f.type === 'file' && IMG_EXT.test(f.name))
+                    .sort((a, b) => a.name.localeCompare(b.name)) // orden alfabético por nombre de archivo
+                    .map(f => f.download_url);
 
                 if (fotos.length === 0) {
                     track.innerHTML = '<div class="slide flex items-center justify-center h-[50vh] md:h-[70vh] text-on-surface-variant font-label-caps text-sm">Todavía no hay fotos cargadas.</div>';
                     return;
                 }
 
-                track.innerHTML = fotos.map((f, i) =>
-                    `<div class="slide"><img alt="${(f.alt || 'Obra ' + (i + 1)).replace(/"/g, '&quot;')}" class="w-full h-[50vh] md:h-[70vh] object-cover" src="${f.imagen}"/></div>`
+                track.innerHTML = fotos.map((src, i) =>
+                    `<div class="slide"><img alt="Obra ${i + 1}" class="w-full h-[50vh] md:h-[70vh] object-cover" src="${src}"/></div>`
                 ).join('');
 
                 total = fotos.length;
